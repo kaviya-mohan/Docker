@@ -1,0 +1,26 @@
+# Pull amazonlinux:2 Docker Image from registry (https://hub.docker.com).
+$ sudo docker image pull amazonlinux:2
+
+
+# Start interactive container using amazonlinux:2 Docker Image.
+$ sudo docker container run -t -i --rm amazonlinux:2 /bin/bash
+
+
+# Install packages and programs required for preparing Base Docker Image.
+$ yum update -y
+$ yum install -y wget vim net-tools initscripts gcc make tar
+$ yum install -y python-devel python-setuptools
+$ easy_install supervisor pip
+$ mkdir /etc/supervisord.d
+$ history -c
+
+# List Docker containers.
+$ sudo docker container ls
+
+
+# Commit the interactive container into a new Docker Image.
+$ sudo docker container commit -m="Prepared Amazon Linux flavoured Base image." -a="DevOps" <CONTAINER_ID> kaviya/amazonlinux:v1
+
+
+# List Docker Images.
+$ sudo docker image ls
